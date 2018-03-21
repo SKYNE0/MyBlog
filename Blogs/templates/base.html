@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--网页布局的基础模板，所有页面皆继承此模板除了admin管理页面-->
+
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+
+<body>
+
+    {% block menu %}
+    {% include 'menu.html' %}
+    {% endblock %}
+
+
+    {% block content %}
+    {% endblock %}
+
+
+    {% block footer %}
+    {% include 'footer.html' %}
+    {% endblock %}
+
+</body>
+</html>

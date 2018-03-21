@@ -1,0 +1,25 @@
+<!--footer部分，友链部分-->
+<div class="ui fixed basic footer segment" style="margin-top:25px;">
+    <div class="ui horizontal bulleted list" style="margin:10px;">
+      <a target="_blank" href="https://skyne0.github.io/" class="item">关于我</a>
+      <a target="_blank" href="#" class="item">PYEGG</a>
+      <a target="_blank" href="https://github.com/skyne0/" class="item">GITHUB</a>
+      <a target="_blank" href="https://www.zhihu.com/people/www.skyne.cn/activities" class="item">知乎</a>
+      <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=sIGBhoOAhIaJhoTwwcGe09-d]http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png" class="item">邮我</a>
+    </div>
+    <p style="color:#C0C0C0;">友情链接&网站推荐</p>
+    <div class="ui horizontal bulleted list" style="margin-bottom:0px; color:#FFFFFF;" >
+        {% for friend in friends %}
+        <div class="item"><a target="_blank" href="{{ friend.url }}"> {{ friend.name }}</a></div>
+        {% endfor %}
+    </div>
+
+    <div class="ui p" style="margin-bottom:-50px; font-size: 16px; color:#FF00FF;">
+        <p>本网站仅为个人博客，心之所向，兴之所往，仅用于分享一些优秀文章，个人感悟，IT技术等等 <br>
+            Copyright© SKYNE Rights Reserved.备案/许可证编号为：豫ICP备16039217 <br>
+            <a href="https://www.djangoproject.com/">
+                <i class="ui power icon"></i> Power By Django
+            </a>
+        </p>
+    </div>
+</div>

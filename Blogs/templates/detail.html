@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+
+    {% block content %}
+    <!--菜单栏下大图部分-->
+    <div class="ui vertical basic contain">
+        <div class="ui banner img" style="background: url(http://or6fe9yua.bkt.clouddn.com/image/banner.jpg);background-size: cover; height:250px; text-align:center;">
+            <div class="ui  header" style="padding-top:100px">
+                <h1 class="ui inverted header" style="font-size:40px; color: #FF00FF">{{ cover.english }}</h1>
+                <h3 class="ui inverted header" style="font-size:25px; color: #00CCCC">{{ cover.chinese }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!--分割线部分-->
+    <div class="ui horizontal divider header" style="height:10px">
+        <i class="tiny file word outline icon"></i>
+        {{ article.title}}
+    </div>
+
+    <!--文章部分-->
+    <div class="ui fixed basic segment" style="position:relative; margin:auto; width: 60%; height:auto;">
+        <div class="ui fixed segment" style="text-align: center; word-wrap:break-word; word-break:break-all; overflow: auto;">
+            {{ article.content|safe}}
+        </div>
+    </div>
+    <!--导航部分-->
+    <div class="ui text">
+        <a href="/detail?query={{ article_pre.id }}">
+            <button class="ui grey labeled icon button" style="position: relative; float: left; margin:-18px 0 50px 20px;">
+                <i class="arrow left icon"></i>
+                {% if article_pre %}
+                    {{ article_pre.title }}
+                {% else %}
+                    不好意思，我到头啦。
+                {% endif %}
+            </button>
+        </a>
+
+        <a href="/detail?query={{ article_next.id }}">
+            <button class="ui grey labeled icon button" style="position: relative; float: right; margin:-18px 20px 50px 0px;">
+                {% if article_next %}
+                    {{ article_next.title }}
+                {% else %}
+                    不好意思，我到头啦。
+                {% endif %}
+                <i class="arrow right icon"></i>
+            </button>
+        </a>
+    </div>
+    {% endblock %}
+

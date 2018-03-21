@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--菜单栏下大图部分-->
+    <div class="ui vertical basic contain">
+        <div class="ui banner img" style="background: url(http://or6fe9yua.bkt.clouddn.com/image/banner.jpg);background-size: cover; height:250px; text-align:center;">
+            <div class="ui  header" style="padding-top:100px">
+                <h1 class="ui inverted  header" style="font-size:40px; color: #FF00FF">Beyond The Memory</h1>
+                <h3 class="ui inverted  header" style="font-size:20px; color: #00CCCC">THERE IS NO FIRE LIKE LUST, NO GRIP LIKE HATE; THERE IS NO NET LIKE DELUSION, NO RIVER LIKE CRAVING.</h3>
+            </div>
+        </div>
+    </div>
+    <!--分割线部分-->
+    <div class="ui horizontal divider header" style="height:10px">
+        <i class="tiny file word outline icon"></i>
+        The latest Article
+    </div>
+    <!--文章部分-->
+    <div class="ui three column centered grid">
+      {% for article in  articles %}
+      <div class="column">
+          <div class="ui image" style="margin:50px; width: auto; height: auto;">
+            <a href="/detail?query={{ article.id }}">
+            <img src="{{ article.cover }}">
+            <a class="ui label" style="margin:5px;"><i class="table icon"></i>{{ article.category }}</a>
+              <h3 class="ui header" style="margin:0px;"><a href="/detail?query={{ article.id }}">{{ article.title }}</a></h3>
+            <div class="ui label" style="margin-bottom:20spx;">
+                <i class="add to calendar icon"> {{ article.created_time }}</i>
+                <i class="user icon"> by:{{ article.author }}</i>
+            </div>
+            </a>
+          </div>
+      </div>
+      {% endfor %}
+
+
+    <div class="ui left fixed basic segment" style="float:left;">
+      {% if articles.has_previous %}
+        <a href="/index?page={{ articles.previous_page_number }}" class="ui red button">上一页</a>
+      {% else %}
+        <a class="ui button">上一页</a>
+      {% endif %}
+    </div>
+
+    <div class="ui header">
+        {% for pg in articles.paginator.page_range %}
+            {% if articles.number == pg %}
+                <a  class="ui active red header" href="/index?page={{ pg }}">&nbsp;{{ pg }}</a>
+            {% else %}
+                <a  class="ui header" href="/index?page={{ pg }}">&nbsp;{{ pg }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="ui right fixed basic segment" style="float:left;">
+      {% if articles.has_next %}
+        <a href="/index?page={{ articles.next_page_number }}"  class="ui red button active">下一页</a>
+      {% else %}
+         <a class="ui button">下一页</a>
+      {% endif %}
+    </div>
+
+    </div>
+{% endblock %}
