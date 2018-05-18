@@ -1,3 +1,4 @@
+# _*_encoding:utf-8 _*_
 import datetime
 
 from django.db import models
@@ -6,6 +7,12 @@ from django.contrib.auth.models import User
 
 from django.urls import reverse
 # Create your models here.
+
+# 解决字符编码问题
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 
 # 分类部分
 class Category(models.Model):
@@ -17,6 +24,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "分类"
         verbose_name_plural = "分类"
+
 
 # 标签部分
 class Tag(models.Model):
@@ -46,6 +54,18 @@ class Cover(models.Model):
         verbose_name = "题图"
         verbose_name_plural = "题图"
 
+# 替换自带的objects管理器，自己可以来编写自己想实现的部分。
+class PostManager(models.Manager):
+    def distinct_date(self):
+        date_list = []
+        dates = self.values('created_time')
+
+        for date in dates:
+            date = date['created_time'].strftime('%Y/%m')
+            if date not in date_list:
+                date_list.append(date)
+
+        return date_list
 
 # 正文部分
 class Post(models.Model):
@@ -58,6 +78,8 @@ class Post(models.Model):
     category = models.ForeignKey(to= Category, verbose_name="分类")
     tag = models.ManyToManyField(to= Tag, verbose_name="标签")
     author = models.ForeignKey(to=User, verbose_name='作者', default= "SKYNE" )
+    # 当使用管理器时会替换掉默认的objects，因此，需要调整views中的视图部分
+    object = PostManager()
 
     def __str__(self):
         return self.title

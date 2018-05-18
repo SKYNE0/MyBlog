@@ -16,7 +16,7 @@
         {{ headlines }}
     </div>
     <!--文章部分-->
-    <div class="ui three column centered grid">
+    <div class="ui four column centered grid">
       {% for article in  articles %}
       <div class="column">
           <div class="ui image" style="margin:50px; width: auto; height: auto;">
@@ -32,32 +32,5 @@
           </div>
       </div>
       {% endfor %}
-
-    <div class="ui left fixed basic segment" style="float:left;">
-      {% if articles.has_previous %}
-        <a href="/index?page={{ articles.previous_page_number }}" class="ui red button">上一页</a>
-      {% else %}
-        <a class="ui button">上一页</a>
-      {% endif %}
-    </div>
-
-    <div class="ui header">
-        {% for pg in articles.paginator.page_range %}
-            {% if articles.number == pg %}
-                <a  class="ui active red header" href="/index?page={{ pg }}">&nbsp;{{ pg }}</a>
-            {% else %}
-                <a  class="ui header" href="/index?page={{ pg }}">&nbsp;{{ pg }}</a>
-            {% endif %}
-        {% endfor %}
-    </div>
-
-    <div class="ui right fixed basic segment" style="float:left;">
-      {% if articles.has_next %}
-        <a href="/index?page={{ articles.next_page_number }}"  class="ui red button active">下一页</a>
-      {% else %}
-         <a class="ui button">下一页</a>
-      {% endif %}
-    </div>
-
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*- 
 """MyBlogs URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,13 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.conf.urls.static import static
-from django.conf import settings
+
 from . import views
 
 app_name = "Blogs"
 
 urlpatterns = [
-        url(r'^$', views.index, name='index'),
+        url(r'^$', views.Index.as_view(), name='index'),
         url (r'^detail/$', views.detail, name='detail'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+        url(r'^archives/$', views.Archives.as_view(), name='archives'),
+        url(r'^archive/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$', views.archive, name='archives_list'),
+        url(r'^label/(?P<tag_id>[0-9]+)/$', views.Label.as_view(), name='label'),
+        url(r'^category/(?P<category_id>[0-9]+)/$', views.Categorys.as_view(), name='category'),
+
+]

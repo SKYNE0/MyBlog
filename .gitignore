@@ -1,0 +1,14 @@
+# 忽略Python相关的
+
+__pycache__/
+
+*.py[cod]
+
+
+# 忽略Django相关的
+
+*.log
+
+local_settings.py
+
+db.sqlite3

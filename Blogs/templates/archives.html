@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--菜单栏下大图部分-->
+    <div class="ui vertical basic contain">
+        <div class="ui banner img" style="background: url(http://or6fe9yua.bkt.clouddn.com/image/banner.jpg);background-size: cover; height:250px; text-align:center;">
+            <div class="ui  header" style="padding-top:100px">
+                <h1 class="ui inverted  header" style="font-size:40px; color: #FF00FF">Beyond The Memory</h1>
+                <h3 class="ui inverted  header" style="font-size:20px; color: #00CCCC">THERE IS NO FIRE LIKE LUST, NO GRIP LIKE HATE; THERE IS NO NET LIKE DELUSION, NO RIVER LIKE CRAVING.</h3>
+            </div>
+        </div>
+    </div>
+    <!--分割线部分-->
+    <div class="ui horizontal divider header" style="height:10px">
+        <i class="tiny file word outline icon"></i>
+        {{ headlines }}
+    </div>
+
+    <!-- 按照时间分类部分 -->
+    <div class="ui fixed basic segment" style="text-align: center;">
+        {% for archive in  archives %}
+        <div class="ui blue circular labels">
+            <a href="/archive/{{ archive }}" class="ui label">
+                {{ archive }}的文章
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!--分割线部分-->
+    <div class="ui horizontal divider header" style="height:10px">
+        <i class="tiny file word outline icon"></i>
+         Classified Catalogue
+    </div>
+
+    <!-- 按照类别分类部分 -->
+    <div class="ui fixed basic segment" style="text-align: center;">
+      {% for category in  categorys %}
+        <div class="ui violet circular labels">
+            <a href="{% url 'Blogs:category' category.id %}" class="ui label">
+                {{ category }}
+            </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!--分割线部分-->
+    <div class="ui horizontal divider header" style="height:10px">
+        <i class="tiny file word outline icon"></i>
+         Labels Cloud
+    </div>
+
+    <!-- 按照标签分类部分 -->
+    <div class="ui fixed basic segment" style="text-align: center;">
+      {% for label in  labels %}
+      <div class="ui green circular labels">
+        <a href="{% url 'Blogs:label' label.id %}" class="ui label">
+            {{ label }}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+{% endblock %}
